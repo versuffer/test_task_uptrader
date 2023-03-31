@@ -1,8 +1,10 @@
 {% for child in node_children %}
-    <li><a href="">{{ child.option }}</a></li>
-    {% if child.children %}
-        <ul>
-            {% include 'menu_component.html' with node_children=child.children %}
-        </ul>
-    {% endif %}
+    <ul>
+        {% include 'node_component.html' with menu_name=child.menu_name node_id=child.id node_name=child.option %}
+        {% if child.children %}
+            <ul>
+                {% include 'menu_component.html' with node_children=child.children.all %}
+            </ul>
+        {% endif %}
+    </ul>
 {% endfor %}

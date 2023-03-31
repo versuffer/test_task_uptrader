@@ -64,6 +64,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'draw_menu': 'tree_builder.templatetags.draw_menu',
+            },
         },
     },
 ]
