@@ -41,7 +41,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'tree_builder.context_processors.cached_queries',
             ],
             'libraries': {
                 'draw_menu': 'tree_builder.templatetags.draw_menu',
