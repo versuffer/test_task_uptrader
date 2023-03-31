@@ -1,4 +1,2 @@
-{% extends 'base.html' %}
-{% block menu %}
-{% include 'menu_component.html' with node_children=node_children %}
-{% endblock %}
+{% include 'node_component.html' with menu_name=menu_name url_name=url_name node_name=menu_name %}
+{% include 'menu_component.html' with node_children=node_children path_nodes=path_nodes %}

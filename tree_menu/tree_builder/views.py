@@ -4,13 +4,13 @@ from .models import Node
 
 
 def start_page(request):
-    return render(request, template_name='base.html')
+    return render(request, template_name='index.html')
 
 
 def draw_menu(request, menu_name: str, url_name: str):
 
     queryset = cache.get('node_queryset')
-    if not queryset:
+    if queryset is None:
         queryset = Node.objects.all()
         cache.set('node_queryset', queryset, timeout=86400)
     menu_nodes = queryset.filter(menu_name=menu_name)
@@ -37,7 +37,12 @@ def draw_menu(request, menu_name: str, url_name: str):
             break
     root_node = path_nodes[-1]
     return render(
-        request, template_name='menu_block.html', context={
-            'node_children': root_node.children.all(), 'path_nodes': path_nodes,
+        request,
+        template_name='menu_page.html',
+        context={
+            'node_children': root_node.children.all(),
+            'path_nodes': path_nodes,
+            'menu_name': menu_name,
+            'url_name': url_name,
         }
     )
