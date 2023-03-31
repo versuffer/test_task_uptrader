@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.core.cache import cache
 from .models import Node
 
@@ -8,11 +8,24 @@ def start_page(request):
 
 
 def draw_menu(request, menu_name: str, url_name: str):
+
     queryset = cache.get('node_queryset')
     if not queryset:
         queryset = Node.objects.all()
-        cache.set('node_queryset', queryset)
+        cache.set('node_queryset', queryset, timeout=86400)
     menu_nodes = queryset.filter(menu_name=menu_name)
+
+    try:
+        if (int(url_name), ) in menu_nodes.values_list('id'):
+            url_name = menu_nodes.get(id=url_name).url_name
+            return redirect(
+                reverse(
+                    'menu', kwargs={'menu_name': menu_name, 'url_name': url_name}
+                )
+            )
+    except ValueError:
+        pass
+
     head_node = menu_nodes.get(url_name=url_name)
     path_nodes = []
 
@@ -22,9 +35,9 @@ def draw_menu(request, menu_name: str, url_name: str):
             head_node = head_node.parent
         else:
             break
-
+    root_node = path_nodes[-1]
     return render(
         request, template_name='menu_block.html', context={
-            'node_children': path_nodes[-1].children.all(), 'path_nodes': path_nodes,
+            'node_children': root_node.children.all(), 'path_nodes': path_nodes,
         }
     )

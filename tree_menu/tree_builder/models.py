@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.core.cache import cache
 
 
 class Node(models.Model):
@@ -25,4 +26,6 @@ class Node(models.Model):
             self.url_name = hash(f'{self.id}_{self.menu_name}_{self.option}')
 
         self.url_name = slugify(self.url_name)
+
         super().save()
+        cache.set('node_queryset', Node.objects.all(), timeout=86400)

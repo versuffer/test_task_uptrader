@@ -9,7 +9,7 @@ register = template.Library()
 @register.inclusion_tag('node_component.html')
 def draw_menu(menu_name: str):
     queryset = Node.objects.all()
-    cache.set('node_queryset', queryset)
+    cache.set('node_queryset', queryset, timeout=86400)
     root_node = queryset.get(parent=None, menu_name=menu_name)
     return {
         'url_name': root_node.url_name, 'node_name': menu_name, 'menu_name': menu_name}
