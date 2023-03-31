@@ -1,7 +1,6 @@
 from django import template
 from tree_builder.models import Node
 
-
 register = template.Library()
 
 
@@ -11,4 +10,4 @@ def draw_menu(menu_name: str):
         parent=None, menu_name=menu_name
     )
     return {
-        'node_id': root_node.id, 'node_name': menu_name, 'menu_name': menu_name}
+        'url_name': root_node.url_name, 'node_name': menu_name, 'menu_name': menu_name}
