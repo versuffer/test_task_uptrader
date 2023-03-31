@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
 from .models import Node
 
 
 def start_page(request):
-    pass
+    menu_list = Node.objects.filter(parent=None)
+    return render(request, template_name='base.html', context={'menu_list': menu_list})
 
 
 def draw_menu(request, menu_name: str, node_id: str):
@@ -18,5 +17,6 @@ def draw_menu(request, menu_name: str, node_id: str):
             head_node = head_node.parent
         else:
             break
+    path_nodes = path_nodes[::-1]
 
-    return HttpResponse(path_nodes)
+    return render(request)
