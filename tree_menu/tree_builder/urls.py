@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import start_page, draw_menu
+
+from .views import draw_menu, start_page
 
 urlpatterns = [
     path('', start_page, name='start'),

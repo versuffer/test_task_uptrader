@@ -1,7 +1,6 @@
 from django import template
-from tree_builder.models import Node
 from django.core.cache import cache
-
+from tree_builder.models import Node
 
 register = template.Library()
 

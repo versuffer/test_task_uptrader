@@ -1,6 +1,6 @@
+from django.core.cache import cache
 from django.db import models
 from django.utils.text import slugify
-from django.core.cache import cache
 
 
 class Node(models.Model):

@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Node
 from django.utils.text import slugify
+
+from .models import Node
 
 
 @admin.register(Node)
