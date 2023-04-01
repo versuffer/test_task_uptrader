@@ -1,9 +1,9 @@
 from django import template
 from django.core.cache import cache
-from tree_builder.models import Node
 from tree_builder.core.cache import cache_menu_query
 from tree_builder.core.tree_builder import build_menu_tree
-from tree_builder.core.tree_renderer import render_menu, node_component
+from tree_builder.core.tree_renderer import node_component, render_menu
+from tree_builder.models import Node
 
 register = template.Library()
 
