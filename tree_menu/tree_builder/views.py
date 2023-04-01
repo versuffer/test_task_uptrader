@@ -44,6 +44,6 @@ def draw_menu(request, menu_name: str, url_name: str):
             'node_children': root_node.children.all(),
             'path_nodes': path_nodes,
             'menu_name': menu_name,
-            'url_name': url_name,
+            'url_name': root_node.url_name,
         }
     )
