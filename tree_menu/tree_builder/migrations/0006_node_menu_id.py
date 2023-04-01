@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('tree_builder', '0005_rename_children_node_parent'),
+        ("tree_builder", "0005_rename_children_node_parent"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='node',
-            name='menu_id',
+            model_name="node",
+            name="menu_id",
             field=models.PositiveSmallIntegerField(default=0),
         ),
     ]

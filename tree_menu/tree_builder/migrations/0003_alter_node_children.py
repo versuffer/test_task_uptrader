@@ -5,15 +5,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('tree_builder', '0002_alter_node_children'),
+        ("tree_builder", "0002_alter_node_children"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='node',
-            name='children',
-            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='tree_builder.node'),
+            model_name="node",
+            name="children",
+            field=models.ForeignKey(
+                default=None,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="tree_builder.node",
+            ),
         ),
     ]

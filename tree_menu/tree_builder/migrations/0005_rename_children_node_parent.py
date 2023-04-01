@@ -4,15 +4,14 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('tree_builder', '0004_alter_node_children'),
+        ("tree_builder", "0004_alter_node_children"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='node',
-            old_name='children',
-            new_name='parent',
+            model_name="node",
+            old_name="children",
+            new_name="parent",
         ),
     ]

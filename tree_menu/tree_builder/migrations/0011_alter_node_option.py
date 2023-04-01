@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('tree_builder', '0010_alter_node_url_name'),
+        ("tree_builder", "0010_alter_node_url_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='node',
-            name='option',
-            field=models.CharField(default='DEFAULT_OPTION', max_length=255),
+            model_name="node",
+            name="option",
+            field=models.CharField(default="DEFAULT_OPTION", max_length=255),
         ),
     ]
