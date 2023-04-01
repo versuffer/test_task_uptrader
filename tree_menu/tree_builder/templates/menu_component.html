@@ -1,11 +1,3 @@
-{% for child in node_children %}
-    <ul>
-        {% include 'node_component.html' with menu_name=child.menu_name url_name=child.url_name node_name=child.option %}
-
-        {% if child in path_nodes and child.children %}
-            <ul>
-                {% include 'menu_component.html' with node_children=child.children.all %}
-            </ul>
-        {% endif %}
-    </ul>
-{% endfor %}
+{% block content %}
+    {{ menu | safe }}
+{% endblock %}
