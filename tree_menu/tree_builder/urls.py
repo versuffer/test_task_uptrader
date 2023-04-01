@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import draw_menu, start_page
+from .views import DrawMenuView, StartPageView
 
 urlpatterns = [
-    path("", start_page, name="start"),
-    path("<str:menu_name>/<slug:slug>", draw_menu, name="menu"),
+    path("", StartPageView.as_view(), name="start"),
+    path("<str:menu_name>/<slug:slug>", DrawMenuView.as_view(), name="menu"),
 ]
