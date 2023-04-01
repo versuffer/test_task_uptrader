@@ -2,7 +2,7 @@ from django.core.cache import cache
 from tree_builder.models import Node
 
 
-def build_menu_tree(menu_name: str, url_name: str):
+def build_menu_tree(menu_name: str, slug: str):
     def recursive_build(node, path_node_dict=None):
         nonlocal queryset, menu_dict
         path_node_dict = path_node_dict or {None: None}
@@ -32,6 +32,6 @@ def build_menu_tree(menu_name: str, url_name: str):
 
     # Run building
     menu_dict = {}
-    active_node = queryset.get(url_name=url_name)
+    active_node = queryset.get(slug=slug)
     recursive_build(active_node)
     return menu_dict

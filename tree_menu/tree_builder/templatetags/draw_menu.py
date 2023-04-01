@@ -1,6 +1,6 @@
 from django import template
-from tree_builder.core.cache import cache_menu_query
-from tree_builder.core.tree_renderer import node_component, render_menu
+from tree_builder.services.cache import cache_menu_query
+from tree_builder.services.tree_renderer import node_component, render_menu
 
 register = template.Library()
 
