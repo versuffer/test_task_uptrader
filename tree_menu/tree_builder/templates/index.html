@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load draw_menu %}
 {% block content %}
-    <h3><a href="{% url 'start' %}">Menu list</a></h3>
     {% draw_menu 'first_menu' %}
     {% draw_menu 'second_menu' %}
     {% draw_menu 'third_menu' %}

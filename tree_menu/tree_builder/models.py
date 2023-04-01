@@ -5,7 +5,7 @@ from django.utils.text import slugify
 
 class Node(models.Model):
     menu_name = models.CharField(max_length=255, default='first')
-    option = models.CharField(max_length=255, default='DEFAULT_OPTION')
+    option = models.CharField(max_length=255, default='DEFAULT_OPTION', unique=False)
     parent = models.ForeignKey(
         'self', related_name='children', on_delete=models.CASCADE, null=True, blank=True
     )

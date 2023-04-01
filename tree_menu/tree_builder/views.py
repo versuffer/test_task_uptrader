@@ -2,6 +2,8 @@ from django.core.cache import cache
 from django.shortcuts import redirect, render, reverse
 
 from .models import Node
+from tree_builder.core.tree_renderer import render_menu
+from tree_builder.core.tree_builder import build_menu_tree
 
 
 def start_page(request):
@@ -9,7 +11,6 @@ def start_page(request):
 
 
 def draw_menu(request, menu_name: str, url_name: str):
-
     queryset = cache.get('node_queryset')
     if queryset is None:
         queryset = Node.objects.all()
@@ -17,7 +18,7 @@ def draw_menu(request, menu_name: str, url_name: str):
     menu_nodes = queryset.filter(menu_name=menu_name)
 
     try:
-        if (int(url_name), ) in menu_nodes.values_list('id'):
+        if (int(url_name),) in menu_nodes.values_list('id'):
             url_name = menu_nodes.get(id=url_name).url_name
             return redirect(
                 reverse(
@@ -47,3 +48,8 @@ def draw_menu(request, menu_name: str, url_name: str):
             'url_name': root_node.url_name,
         }
     )
+
+
+def draw(request, menu_name: str, url_name: str):
+    menu = render_menu(build_menu_tree(menu_name, url_name))
+    return render(request, template_name='menu_page.html', context={'menu': menu})
