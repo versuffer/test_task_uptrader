@@ -1,9 +1,9 @@
 from django.core.cache import cache
 from django.shortcuts import redirect, render, reverse
+from tree_builder.core.tree_builder import build_menu_tree
+from tree_builder.core.tree_renderer import render_menu
 
 from .models import Node
-from tree_builder.core.tree_renderer import render_menu
-from tree_builder.core.tree_builder import build_menu_tree
 
 
 def start_page(request):
