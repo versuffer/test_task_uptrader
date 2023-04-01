@@ -2,9 +2,7 @@ from django.urls import reverse
 
 
 def node_component(node):
-    reference = reverse(
-        "menu", kwargs={"menu_name": node.menu_name, "slug": node.slug}
-    )
+    reference = reverse("menu", kwargs={"menu_name": node.menu_name, "slug": node.slug})
     print(reference)
     node_html = f"""
 <li>

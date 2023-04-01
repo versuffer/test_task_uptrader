@@ -1,8 +1,5 @@
 from django.db import models
 from django.utils.text import slugify
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.core.cache import cache
 
 
 class Node(models.Model):
@@ -25,8 +22,3 @@ class Node(models.Model):
             self.slug = self.option
         self.slug = slugify(self.slug)
         super().save()
-
-
-@receiver(post_save, sender=Node)
-def refreshing_cache(sender, instance, **kwargs):
-    cache.delete(f"{instance.menu_name}_queryset")
