@@ -1,5 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-    <h3><a href="{% url 'start' %}">Menu list</a></h3>
-    {% include 'menu_block.html' with menu_name=menu_name url_name=url_name node_children=node_children path_nodes=path_nodes %}
-{% endblock %}

@@ -4,19 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('tree_builder', '0006_node_menu_id'),
+        ("tree_builder", "0006_node_menu_id"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='node',
-            name='menu_id',
+            model_name="node",
+            name="menu_id",
         ),
         migrations.AddField(
-            model_name='node',
-            name='menu_name',
-            field=models.CharField(default='first', max_length=255),
+            model_name="node",
+            name="menu_name",
+            field=models.CharField(default="first", max_length=255),
         ),
     ]

@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('tree_builder', '0009_node_url_name'),
+        ("tree_builder", "0009_node_url_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='node',
-            name='url_name',
+            model_name="node",
+            name="url_name",
             field=models.CharField(blank=True, max_length=200, null=True, unique=True),
         ),
     ]
