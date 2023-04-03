@@ -1,7 +1,6 @@
 from django.urls import path
 
-from .views import (CheckPrimaryKeyView, DrawMenuView, CheckMenuNameView,
-                    StartPageView)
+from .views import CheckMenuNameView, CheckPrimaryKeyView, DrawMenuView, StartPageView
 
 urlpatterns = [
     path("", StartPageView.as_view(), name="start"),
