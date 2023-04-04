@@ -20,9 +20,8 @@ class CheckMenuNameView(RedirectView):
 class CheckPrimaryKeyView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         menu_name = kwargs["menu_name"]
-        pk = kwargs["pk"]
         queryset = cache_menu_query(menu_name=menu_name)
-        slug = queryset.get(pk=pk).slug
+        slug = queryset.get(pk=kwargs["pk"]).slug
         return reverse("menu", kwargs={"menu_name": menu_name, "slug": slug})
 
 
@@ -30,8 +29,7 @@ class DrawMenuView(TemplateView):
     template_name = "menu_page.html"
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["menu"] = render_menu(
-            build_menu_tree(kwargs["menu_name"], kwargs["slug"])
-        )
+        context = {
+            "menu": render_menu(build_menu_tree(kwargs["menu_name"], kwargs["slug"]))
+        }
         return context
