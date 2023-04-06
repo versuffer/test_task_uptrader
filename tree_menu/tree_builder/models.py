@@ -13,7 +13,7 @@ class Node(models.Model):
     def __str__(self):
         return f"node_id: {self.id}; option: {self.option}; menu_name: {self.menu_name}"
 
-    def save(self):
+    def save(self, *args, **kwargs):
         if not self.parent:
             self.slug = f"{self.menu_name}-root-node"
             self.option = self.menu_name
@@ -21,4 +21,4 @@ class Node(models.Model):
             self.menu_name = self.parent.menu_name
             self.slug = self.option
         self.slug = slugify(self.slug)
-        super().save()
+        super().save(*args, **kwargs)
