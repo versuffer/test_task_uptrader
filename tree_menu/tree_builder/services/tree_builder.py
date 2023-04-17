@@ -1,5 +1,4 @@
-from django.core.cache import cache
-from tree_builder.models import Node
+from .cache import cache_menu_query
 
 
 def build_menu_tree(menu_name: str, slug: str):
@@ -21,17 +20,23 @@ def build_menu_tree(menu_name: str, slug: str):
             menu_dict = tree_dict
             return
 
-        parent_node = queryset.get(id=parent_id)
+        # Seeking parent node in queryset without hitting database
+        for check_node in queryset:
+            if check_node.id == parent_id:
+                parent_node = check_node
+
         recursive_build(parent_node, tree_dict)
 
     # Hit database or get cached data for building menu tree
-    queryset = cache.get(f"{menu_name}_queryset")
-    if queryset is None:
-        queryset = Node.objects.filter(menu_name=menu_name)
-        cache.set(f"{menu_name}_queryset", queryset, timeout=86400)
+    queryset = cache_menu_query(menu_name)
 
     # Run building
     menu_dict = {}
-    active_node = queryset.get(slug=slug)
+
+    # Seeking active node in queryset without hitting database
+    for check_node in queryset:
+        if check_node.slug == slug:
+            active_node = check_node
+
     recursive_build(active_node)
     return menu_dict

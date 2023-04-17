@@ -100,3 +100,29 @@ CACHES = {
 STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console_formatter": {
+            "format":
+                """
+------------------------------------------------------------------------------------
+{asctime} - {levelname}:
+{message}
+------------------------------------------------------------------------------------
+                """,
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console_handler": {
+            "class": "logging.StreamHandler",
+            "formatter": "console_formatter",
+        },
+    },
+    "loggers": {
+        "django.db.backends": {"handlers": ["console_handler"], "level": "DEBUG"}
+    },
+}
